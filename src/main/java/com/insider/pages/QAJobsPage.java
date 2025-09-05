@@ -116,7 +116,7 @@ public class QAJobsPage {
             clickLocationFilter();
             
             //Wait for the dropdown to open
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.className("select2-dropdown")));
+            wait.until(ExpectedConditions.presenceOfElementLocated(select2Dropdown));
             
             //Wait for the options to load and select
             waitForLocationOptionsAndSelect(location);
@@ -150,7 +150,7 @@ public class QAJobsPage {
             clickDepartmentFilter();
             
             // Wait for the dropdown to open
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.className("select2-dropdown")));
+            wait.until(ExpectedConditions.presenceOfElementLocated(select2Dropdown));
             
             // Wait for options to load and select
             waitForDepartmentOptionsAndSelect(department);

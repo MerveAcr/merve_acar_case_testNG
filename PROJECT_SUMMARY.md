@@ -1,4 +1,4 @@
-# Insider Website Test Automation - Project Summary
+# Insider Website Test Automation Project
 
 ## 🎯 Project Overview
 This project implements comprehensive automated testing for the Insider website using Selenium WebDriver and TestNG framework. The test suite covers all the requested scenarios for testing the Insider careers functionality.
@@ -21,58 +21,39 @@ This project implements comprehensive automated testing for the Insider website 
 - **Steps**:
   - Navigate to QA jobs page
   - Click "See all QA jobs" button
-  - Apply location filter: "Istanbul, Turkey"
+  - Apply location filter: "Istanbul, Turkiye"
   - Apply department filter: "Quality Assurance"
   - Validate all jobs match filter criteria
   - Test View Role button redirect to Lever application form
 - **Validation**: Each job must contain:
   - Position: "Quality Assurance"
   - Department: "Quality Assurance" 
-  - Location: "Istanbul, Turkey"
+  - Location: "Istanbul, Turkiye"
   - Successful redirect to jobs.lever.co domain
 
 ## 🏗️ Project Architecture
 
 ### Page Object Model (POM)
-- **HomePage**: Handles homepage navigation and Company menu interactions
+- **HomePage**: Handles homepage navigation and basic page verification
 - **CareersPage**: Manages careers page validation and section checks
-- **QAJobsPage**: Handles QA jobs filtering and job details validation
+- **QAJobsPage**: Handles QA jobs filtering, validation, and job details verification
+- **GlobalNavigationBar**: Manages navigation between different sections and sub-menus
 
 ### Base Classes
-- **BaseTest**: WebDriver setup, configuration, and common test utilities
-- **WebDriverUtils**: Utility methods for common WebDriver operations
+- **BaseTest**: WebDriver setup, configuration, and common test utilities with ExtentReports integration
+
+### Utility Classes
+- **WebDriverUtils**: Main utility facade for all WebDriver operations
+- **ElementUtils**: Common element operations (click, scroll, hover, find with fallback)
+- **PageUtils**: Page-level operations (wait for load, document ready, AJAX completion)
+- **OverlayUtils**: Overlay and popup handling operations
+- **DropdownUtils**: Dropdown and select2 component operations
+- **ConfigReader**: Configuration properties management
+- **ExtentReportUtils**: ExtentReports integration and report generation
 
 ### Configuration
 - **test.properties**: Centralized configuration for URLs, timeouts, and test data
 - **testng.xml**: TestNG suite configuration for test execution
-
-## 🚀 How to Run Tests
-
-### Prerequisites
-- Java 11+ (Java 17 recommended)
-- Maven 3.6+
-- Chrome browser
-
-### Execution Methods
-
-#### Method 1: Using Maven
-```bash
-mvn test
-```
-
-#### Method 2: Using TestNG XML
-```bash
-mvn test -DsuiteXmlFile=testng.xml
-```
-
-#### Method 3: Using Scripts
-- **Windows**: `run-tests-with-extent.bat` or `setup-and-run.bat`
-- **Linux/Mac**: `./run-tests-with-extent.sh`
-
-#### Method 4: Run Specific Test
-```bash
-mvn test -Dtest=InsiderWebsiteTest#testHomePageOpened
-```
 
 ## 📁 Project Structure
 ```
@@ -86,46 +67,54 @@ insider-test-automation/
 ├── src/
 │   ├── main/java/com/insider/
 │   │   ├── pages/                   # Page Object classes
+│   │   │   ├── HomePage.java
+│   │   │   ├── CareersPage.java
+│   │   │   ├── QAJobsPage.java
+│   │   │   └── GlobalNavigationBar.java
 │   │   ├── tests/                   # Base test class
+│   │   │   └── BaseTest.java
 │   │   └── utils/                   # Utility classes
+│   │       ├── WebDriverUtils.java
+│   │       ├── ElementUtils.java
+│   │       ├── PageUtils.java
+│   │       ├── OverlayUtils.java
+│   │       ├── DropdownUtils.java
+│   │       ├── ConfigReader.java
+│   │       └── ExtentReportUtils.java
 │   └── main/resources/
 │       └── test.properties          # Test configuration
 └── src/test/java/com/insider/tests/
     └── InsiderWebsiteTest.java      # Main test class
 ```
 
-## 🔧 Technical Features
+## 🔧 Technical Implementation Details
 
-### WebDriver Management
-- Automatic ChromeDriver setup using WebDriverManager
-- Chrome browser configuration with optimal settings
-- Implicit and explicit wait strategies
+### Framework Architecture
+- **Selenium WebDriver 4.15.0**: Latest stable version with enhanced features
+- **TestNG 7.8.0**: Advanced test framework with parallel execution support
+- **Maven**: Dependency management and build automation
+- **ExtentReports 5.0.9**: Professional HTML reporting with screenshots
 
-### Test Configuration
-- Priority-based test execution (1-5)
-- Configurable timeouts and browser settings
-- Centralized test data management
+### Design Patterns
+- **Page Object Model**: Clean separation of page logic and test logic
+- **Facade Pattern**: WebDriverUtils as main interface for all operations
+- **Utility Pattern**: Specialized utility classes for different operations
+- **Configuration Pattern**: Centralized configuration management
 
-### Error Handling
-- Robust exception handling in all page methods
-- Graceful fallbacks for element interactions
-- Comprehensive assertion messages
+### Quality Assurance
+- **Error Handling**: Basic exception handling and fallback mechanisms
+- **Wait Strategies**: Explicit waits with 10-second timeout
+- **Browser Support**: Chrome browser (primary)
+- **Code Quality**: Documented and modular structure
 
-### Maintainability
-- Clean separation of concerns
-- Reusable page object methods
-- Centralized locator management
-
-## 📊 Test Results
-Tests generate detailed reports in multiple locations:
-- **ExtentReports**: `test-output/ExtentReports/Insider Test Automation Report.html` - Interactive HTML report with screenshots and detailed steps
-- **Surefire Reports**: `target/surefire-reports/` - Standard TestNG reports including:
-  - Test execution summary
-  - Pass/fail status for each test
-  - Detailed error messages and stack traces
-  - Execution timing information
+## 📈 Business Value
+- **Test Automation**: Automated validation of specified user journeys
+- **Quality Assurance**: Helps identify issues in careers functionality
+- **Regression Testing**: Can be used for basic regression testing
+- **Documentation**: Provides test documentation for careers flow
+- **Efficiency**: Reduces manual testing for covered scenarios
 
 ## 🎉 Project Status
-✅ **COMPLETED** - All requested test scenarios implemented and ready for execution
+✅ **COMPLETED** - All specified test scenarios implemented and working
 
-The project is fully functional and ready to run the complete test suite for the Insider website careers functionality.
+The project successfully validates the Insider careers functionality as per the given requirements and can be integrated into CI/CD pipelines.
