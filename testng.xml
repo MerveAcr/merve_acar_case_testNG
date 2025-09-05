@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Insider Website Test Suite" verbose="1">
+    <test name="Insider Website Tests">
+        <classes>
+            <class name="com.insider.tests.InsiderWebsiteTest">
+                <methods>
+                    <include name="testHomePageOpened"/>
+                    <include name="testCareersPageNavigation"/>
+                    <include name="testCompleteQAJobsWorkflow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
